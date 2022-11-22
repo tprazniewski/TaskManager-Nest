@@ -1,6 +1,8 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { ITask } from '../tasks/task.model';
+import { CreateTaskDto } from '../tasks/dto/create-task-dto';
+
 @Controller('tasks')
 export class TasksController {
   constructor(private taskservice: TasksService) {}
@@ -17,9 +19,17 @@ export class TasksController {
 
   // Second post approach
 
+  //   @Post()
+  //   createTask(
+  //     @Body('title') title: string,
+  //     @Body('description') description: string,
+  //   ): ITask {
+  //     return this.taskservice.createTask(title, description);
+  //   }
+
+  //UsingDTO
   @Post()
-  createTask(@Body('title') title, @Body('description') description) {
-    console.log('title', title);
-    console.log('description', description);
+  createTask(@Body() createTaskDto: CreateTaskDto): ITask {
+    return this.taskservice.createTask(createTaskDto);
   }
 }

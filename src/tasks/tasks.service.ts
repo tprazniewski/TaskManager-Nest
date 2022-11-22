@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ITask, TaskStatus } from '..//tasks/task.model';
 import { v4 as uuid } from 'uuid';
+import { CreateTaskDto } from './dto/create-task-dto';
 //if We use Injectable decorator , it makes is a singleton and  We can use it across the whole app
 @Injectable()
 export class TasksService {
@@ -10,7 +11,8 @@ export class TasksService {
     return this.tasks;
   }
 
-  createTask(title: string, description: string): ITask {
+  createTask(createTaskDto: CreateTaskDto): ITask {
+    const { title, description } = createTaskDto;
     const task: ITask = {
       id: uuid(),
       title,
