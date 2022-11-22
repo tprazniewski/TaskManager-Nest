@@ -20,6 +20,12 @@ export class TasksService {
     console.log(this.tasks);
   }
 
+  updateTaskStatus(id: string, status: TaskStatus) {
+    const task = this.getTaskById(id);
+    task.status = status;
+    return task;
+  }
+
   createTask(createTaskDto: CreateTaskDto): ITask {
     const { title, description } = createTaskDto;
     const task: ITask = {
