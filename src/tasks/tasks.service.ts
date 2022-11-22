@@ -15,6 +15,11 @@ export class TasksService {
     return this.tasks;
   }
 
+  deleteTaskById(id: string): void {
+    this.tasks = this.tasks.filter((task) => task.id !== id);
+    console.log(this.tasks);
+  }
+
   createTask(createTaskDto: CreateTaskDto): ITask {
     const { title, description } = createTaskDto;
     const task: ITask = {
