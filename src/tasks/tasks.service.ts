@@ -7,6 +7,10 @@ import { CreateTaskDto } from './dto/create-task-dto';
 export class TasksService {
   private tasks: ITask[] = [];
 
+  getTaskById(id: string): ITask {
+    return this.tasks.find((task) => task.id === id);
+  }
+
   getAllTasks(): ITask[] {
     return this.tasks;
   }
