@@ -5,7 +5,7 @@ import { TasksController } from './tasks.controller';
 import { TasksService } from './tasks.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TaskRepository])],
+  imports: [TypeOrmModule.forFeature([TaskRepository])], // allow us DI whereever we need in the taskModule
   controllers: [TasksController],
   providers: [TasksService],
 })
