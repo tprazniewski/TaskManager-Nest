@@ -33,6 +33,14 @@ export class TasksController {
     return this.taskservice.deleteTask(id);
   }
 
+  @Patch(':id/status')
+  updateTaskStatus(
+    @Param('id') id: string,
+    @Body('status') status: TaskStatus,
+  ): Promise<Task> {
+    return this.taskservice.updateTaskStatus(id, status);
+  }
+
   // @Get()
   // getTasks(@Query() filterDto: GetTasksFilterDto): ITask[] {
   //   if (Object.keys(filterDto).length) {
