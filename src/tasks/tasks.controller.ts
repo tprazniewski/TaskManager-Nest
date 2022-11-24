@@ -19,6 +19,11 @@ import { Task } from './task.entity';
 export class TasksController {
   constructor(private taskservice: TasksService) {}
 
+  @Get()
+  getTasks(@Query() filterDto: GetTasksFilterDto): Promise<Task[]> {
+    return this.taskservice.getTasks(filterDto);
+  }
+
   @Get('/:id')
   getTaskById(@Param('id') id: string): Promise<Task> {
     return this.taskservice.getTaskById(id);
