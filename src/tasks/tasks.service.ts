@@ -6,6 +6,7 @@ import { GetTasksFilterDto } from './dto/get-tasks-filter-dto';
 import { TaskRepository } from '../tasks/task.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Task } from './task.entity';
+import { User } from '../auth/user.entity';
 //if We use Injectable decorator , it makes is a singleton and  We can use it across the whole app
 @Injectable()
 export class TasksService {
@@ -26,8 +27,8 @@ export class TasksService {
     return found;
   }
 
-  createTask(createTaskDto: CreateTaskDto): Promise<Task> {
-    return this.taskRepository.createTask(createTaskDto);
+  createTask(createTaskDto: CreateTaskDto, user: User): Promise<Task> {
+    return this.taskRepository.createTask(createTaskDto, user);
   }
 
   async deleteTask(id: string): Promise<void> {
